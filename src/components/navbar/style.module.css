@@ -1,0 +1,26 @@
+.navbar_bg {
+    background-color: #F1F3FF;
+}
+
+.navbar_container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navbar_logo {
+    width: 100px;
+    height: 34px;    
+    background-color: #0D28A6;
+}
+
+.navbar_link {
+    color: black !important;
+}
+
+.navbar_link:hover {
+    font-weight: 500;
+}
+
+.navbar_button {
+    margin-left: 10px;
+}

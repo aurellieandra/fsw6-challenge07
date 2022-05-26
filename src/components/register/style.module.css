@@ -1,0 +1,11 @@
+#register {
+    padding-top: 0px;
+    padding-bottom: 25px;
+    background: #0D28A6;
+    color: white;
+    border-radius: 30px;
+}
+
+#register_konten {
+    padding: 55px;
+}

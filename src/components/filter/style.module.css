@@ -1,0 +1,14 @@
+.forms {
+    margin-top: -30px;
+    z-index: 100;
+}
+.filter_form {
+    padding: 30px;
+}
+
+.filter_submit {
+    margin-right: 80px;
+    margin-top: 40px;
+    display: flex;
+    align-self: center;
+}

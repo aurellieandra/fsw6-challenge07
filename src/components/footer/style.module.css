@@ -1,0 +1,19 @@
+#footer {
+    font-size: 14px;
+}
+
+.navbar_logo {
+    width: 100px;
+    height: 34px;    
+    background-color: #0D28A6;
+}
+
+.footer_icon {
+    display: flex;
+    gap: 15px;
+}
+
+.footer_links {
+    text-decoration: none;
+    color: black;
+}
