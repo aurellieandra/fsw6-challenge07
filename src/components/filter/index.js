@@ -1,9 +1,18 @@
 import React from 'react'
 import styles from './style.module.css'
 
-import { Container, Form, FormSelect, InputGroup, Button } from 'react-bootstrap'
+import { Container, Form, FormSelect, Button } from 'react-bootstrap'
 
-export default function Filter() {
+import filterCarFunction from '../../helpers/filterCar'
+
+export default function Filter({ cars, setCars }) {
+    // tinggal di modifikasi di bagian ini saja, nanti dilanjutkan lagi
+    // lagi sakit gabisa mikir
+    const onFilterAvailable = () => {
+        const filteredCar = filterCarFunction({ array: cars, available: "true" })
+        setCars(filteredCar)
+    }
+
     return (
         <div className="container-fluid mb-5">
             <div className={styles.forms}>
@@ -13,7 +22,7 @@ export default function Filter() {
                             <div className="col">
                                 <p>Tipe Driver</p>
                                 <Form.Group>
-                                    <FormSelect>
+                                    <FormSelect id="tipeDriverValue">
                                         <option hidden>Pilih Tipe Driver</option>
                                         <option value="true">Dengan Sopir</option>
                                         <option value="false">Tanpa Sopir (Lepas Kunci)</option>
@@ -24,14 +33,16 @@ export default function Filter() {
                                 <p>Tanggal</p>
                                 <Form.Group>
                                     <Form.Control
-                                        type="date" placeholder="Pilih Tanggal"
+                                        type="date"
+                                        placeholder="Pilih Tanggal"
+                                        id="tanggalValue"
                                     />
                                 </Form.Group>
                             </div>
-                            <div class="col">
+                            <div className="col">
                                 <p>Waktu Jemput/ Ambil</p>
                                 <Form.Group>
-                                    <FormSelect>
+                                    <FormSelect id="waktuValue">
                                         <option hidden>Pilih Waktu</option>
                                         <option value="8">08:00 WIB</option>
                                         <option value="9">09:00 WIB</option>
@@ -44,7 +55,7 @@ export default function Filter() {
                             <div className="col-3">
                                 <p>Jumlah Penumpang (Opsional)</p>
                                 <Form.Group>
-                                    <FormSelect>
+                                    <FormSelect id="penumpangValue">
                                         <option value="null">Jumlah Penumpang</option>
                                         <option value="1">1 orang</option>
                                         <option value="2">2 orang</option>
@@ -60,10 +71,12 @@ export default function Filter() {
                                     variant="success"
                                     type="submit"
                                     value="submit"
-                                    className={styles.filter_submit}>
+                                    className={styles.filter_submit}
+                                >
                                     Cari Mobil
                                 </Button>
                             </div>
+                            <div onClick={() => onFilterAvailable()}>Click me to filter availability true!</div>
                         </div>
                     </Form>
                 </Container>

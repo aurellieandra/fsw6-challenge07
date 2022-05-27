@@ -1,3 +1,5 @@
+// ini ga dipake, cuma sebagai referensi untuk bikin di helpernya
+
 var AllCar = null
 
 const getAllCar = () => {

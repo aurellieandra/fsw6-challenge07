@@ -15,8 +15,14 @@ export default function Cars() {
 
     const getCars = async () => {
         const allCars = await getCarsService()
+        // console.log(allCars)
         setCars(allCars)
     }
+
+    // const onFilter = () => {
+    //     const filteredCar = filterCarFunction({ array: cars, minValue: 4 })
+    //     setCars(filteredCar)
+    // }
 
     useEffect(() => {
         getCars()
@@ -25,8 +31,14 @@ export default function Cars() {
     return (
         <div>
             <Navbar />
+
             <CarsHeader />
-            <Filter />
+
+            <Filter
+                cars={cars}
+                setCars={setCars}
+            />
+
             <Container>
                 <div className={styles.display}>
                     {
@@ -34,6 +46,7 @@ export default function Cars() {
                     }
                 </div>
             </Container>
+
             <Footer />
         </div>
     )
