@@ -1,0 +1,30 @@
+.cm_container {
+    width: 300px !important;
+    padding: 0 !important;
+}
+
+.cm_card {
+    width: fit-content;
+    height: 550px;
+}
+
+.cm_content {
+    max-width: 300px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.cm_up_content {
+    min-height: 350px;
+}
+
+.cm_image {
+    width: 255px;
+    max-height: 150px;
+    align-self: center;
+    border-radius: 5px;
+}
+
+.cm_icon {
+    align-self: start !important;
+}
