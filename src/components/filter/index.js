@@ -1,28 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './style.module.css'
 
-import { Container, Form, FormSelect, Button } from 'react-bootstrap'
+import { Container, Form, FormSelect, Button, FormControl } from 'react-bootstrap'
 
-import filterCarFunction from '../../helpers/filterCar'
+import filterCar1 from '../../helpers/filterCar1'
+import filterCar2 from '../../helpers/filterCar2'
 
-export default function Filter({ cars, setCars }) {
-    // tinggal di modifikasi di bagian ini saja, nanti dilanjutkan lagi
-    // lagi sakit gabisa mikir
-    const onFilterAvailable = () => {
-        const filteredCar = filterCarFunction({ array: cars, available: "true" })
-        setCars(filteredCar)
+export default function Filter({ cars, setCars, normalCars }) {
+    const [tipeDriver, setTipeDriver] = useState('')
+    const [tanggal, setTanggal] = useState('')
+    const [waktu, setWaktu] = useState('')
+    const [penumpang, setPenumpang] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('Form has been submitted!')
+        console.log(tipeDriver)
+        console.log(tanggal)
+        console.log(waktu)
+        console.log(penumpang)
+
+        if (penumpang) {
+            setCars(filterCar1({ array: cars, avail: tipeDriver, tanggal: tanggal, waktu: waktu, kapasitas: penumpang }))
+            console.log('===Complete SET!===')
+        } else if (!penumpang) {
+            setCars(filterCar2({ array: cars, avail: tipeDriver, tanggal: tanggal, waktu: waktu }))
+            console.log('===A flaw!===')
+        } else {
+            console.log("Why would this happen?")
+        }
     }
 
     return (
         <div className="container-fluid mb-5">
             <div className={styles.forms}>
                 <Container className="card" id={styles.forms}>
-                    <Form className={styles.filter_form}>
+                    <Form className={styles.filter_form} onSubmit={handleSubmit}>
                         <div className="row">
                             <div className="col">
                                 <p>Tipe Driver</p>
                                 <Form.Group>
-                                    <FormSelect id="tipeDriverValue">
+                                    <FormSelect
+                                        value={tipeDriver}
+                                        onChange={(e) => setTipeDriver(e.target.value)}
+                                    >
                                         <option hidden>Pilih Tipe Driver</option>
                                         <option value="true">Dengan Sopir</option>
                                         <option value="false">Tanpa Sopir (Lepas Kunci)</option>
@@ -35,14 +57,18 @@ export default function Filter({ cars, setCars }) {
                                     <Form.Control
                                         type="date"
                                         placeholder="Pilih Tanggal"
-                                        id="tanggalValue"
+                                        value={tanggal}
+                                        onChange={(e) => setTanggal(e.target.value)}
                                     />
                                 </Form.Group>
                             </div>
                             <div className="col">
                                 <p>Waktu Jemput/ Ambil</p>
                                 <Form.Group>
-                                    <FormSelect id="waktuValue">
+                                    <FormSelect
+                                        value={waktu}
+                                        onChange={(e) => setWaktu(e.target.value)}
+                                    >
                                         <option hidden>Pilih Waktu</option>
                                         <option value="8">08:00 WIB</option>
                                         <option value="9">09:00 WIB</option>
@@ -55,8 +81,11 @@ export default function Filter({ cars, setCars }) {
                             <div className="col-3">
                                 <p>Jumlah Penumpang (Opsional)</p>
                                 <Form.Group>
-                                    <FormSelect id="penumpangValue">
-                                        <option value="null">Jumlah Penumpang</option>
+                                    <FormSelect
+                                        value={penumpang}
+                                        onChange={(e) => setPenumpang(e.target.value)}
+                                    >
+                                        <option default value="null">Jumlah Penumpang</option>
                                         <option value="1">1 orang</option>
                                         <option value="2">2 orang</option>
                                         <option value="3">3 orang</option>
@@ -76,7 +105,6 @@ export default function Filter({ cars, setCars }) {
                                     Cari Mobil
                                 </Button>
                             </div>
-                            <div onClick={() => onFilterAvailable()}>Click me to filter availability true!</div>
                         </div>
                     </Form>
                 </Container>
